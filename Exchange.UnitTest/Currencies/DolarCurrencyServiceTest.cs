@@ -19,6 +19,7 @@ namespace Exchange.UnitTest.Currencies
         public DolarCurrencyServiceTest()
         {
             _mockBancoProvinciaService = new Mock<IBancoProvinciaService>();
+            _mockLogger = new Mock<ILogger<DolarCurrencyService>>();
             _dolarCurrencyService = new DolarCurrencyService(_mockBancoProvinciaService.Object, _mockLogger.Object);
         }
         

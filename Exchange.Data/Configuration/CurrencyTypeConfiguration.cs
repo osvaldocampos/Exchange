@@ -12,8 +12,8 @@ namespace Scholar.Data.Configuration.EntidadesInstitucion
             builder.HasKey(o => o.CurrencyTypeId);
 
             builder.HasData(new CurrencyType[] {
-                new CurrencyType() { CurrencyTypeId = (int)CurrencyTypeEnum.Dolar, Name = "" },
-                new CurrencyType() { CurrencyTypeId = (int)CurrencyTypeEnum.Real, Name = "" },
+                new CurrencyType() { CurrencyTypeId = (int)CurrencyTypeEnum.Dolar, Name = "Dollar" },
+                new CurrencyType() { CurrencyTypeId = (int)CurrencyTypeEnum.Real, Name = "Real" },
             });
         }
     }

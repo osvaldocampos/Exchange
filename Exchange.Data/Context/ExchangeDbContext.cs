@@ -12,8 +12,7 @@ namespace Exchange.Data.Context
         public DbSet<CurrencyType> CurrencyTypes { get; set; }
         public DbSet<Limit> Limits { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserLimit> UserLimits { get; set; }
+        public DbSet<User> Users { get; set; }        
         public DbSet<UserTransaction> UserTransactions { get; set; }
 
         public ExchangeDbContext(DbContextOptions<ExchangeDbContext> options)

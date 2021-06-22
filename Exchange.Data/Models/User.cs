@@ -12,8 +12,7 @@ namespace Exchange.Data.Models
         public string Name { get; set; }
 
         #region Navigation properties
-        public virtual List<UserTransaction> UserTransactions { get; set; }
-        public virtual List<UserLimit> UserLimits { get; set; }
+        public virtual List<UserTransaction> UserTransactions { get; set; }        
         #endregion
     }
 }

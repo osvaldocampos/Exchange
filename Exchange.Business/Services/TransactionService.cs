@@ -81,8 +81,7 @@ namespace Exchange.Business.Services
             try
             {
                 Limit limit = await _exchangeDbContext.Limits
-                    .Include(x => x.UserLimit)
-                    .SingleOrDefaultAsync(x => x.UserLimit.UserId == userId && x.CurrencyTypeId == (int)currencyTypeEnum);
+                    .SingleOrDefaultAsync(x => x.CurrencyTypeId == (int)currencyTypeEnum);
 
                 decimal totalAmount = await _exchangeDbContext.Transactions
                     .Include(x => x.UserTransaction)

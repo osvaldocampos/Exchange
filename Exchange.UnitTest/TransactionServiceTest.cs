@@ -88,18 +88,9 @@ namespace Exchange.UnitTest
                 new User() { UserId = 2, Name = "Joseph" }
                 );
 
-            context.UserLimits.AddRange(
-                new UserLimit() { UserId = 1, LimitId = 1 },
-                new UserLimit() { UserId = 1, LimitId = 2 },
-                new UserLimit() { UserId = 2, LimitId = 3 },
-                new UserLimit() { UserId = 2, LimitId = 4 }
-                );
-
             context.Limits.AddRange(
-                new Limit() { LimitId = 1, CurrencyTypeId = (int)CurrencyTypeEnum.Dolar, Amount = 1000 },
-                new Limit() { LimitId = 2, CurrencyTypeId = (int)CurrencyTypeEnum.Real, Amount = 250 },
-                new Limit() { LimitId = 3, CurrencyTypeId = (int)CurrencyTypeEnum.Dolar, Amount = 1000 },
-                new Limit() { LimitId = 4, CurrencyTypeId = (int)CurrencyTypeEnum.Real, Amount = 250 }
+                new Limit() { CurrencyTypeId = (int)CurrencyTypeEnum.Dolar, Amount = 1000 },
+                new Limit() { CurrencyTypeId = (int)CurrencyTypeEnum.Real, Amount = 250 }
                 );
             context.SaveChanges();
         }

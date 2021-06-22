@@ -12,8 +12,7 @@ namespace Exchange.Data.Models
         public int CurrencyTypeId { get; set; }
         public decimal Amount { get; set; }
 
-        #region Navigation properties
-        public virtual UserLimit UserLimit { get; set; }
+        #region Navigation properties        
         public virtual CurrencyType CurrencyType { get; set; }
         #endregion
     }

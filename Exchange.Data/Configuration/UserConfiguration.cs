@@ -13,10 +13,6 @@ namespace Scholar.Data.Configuration.EntidadesInstitucion
             builder.HasMany(x => x.UserTransactions)
                 .WithOne(x => x.User);
 
-            builder.HasMany(x => x.UserLimits)
-                .WithOne(x => x.User);
-
-
             builder.HasData(
                 new User() { UserId = 1, Name = "Jhon" },
                 new User() { UserId = 2, Name = "Terri" }

@@ -11,7 +11,6 @@ namespace Exchange.Data.Interfaces
         DbSet<Limit> Limits { get; set; }
         DbSet<Transaction> Transactions { get; set; }
         DbSet<User> Users { get; set; }
-        DbSet<UserLimit> UserLimits { get; set; }
         DbSet<UserTransaction> UserTransactions { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Exchange.Data.Migrations
 {
     [DbContext(typeof(ExchangeDbContext))]
-    [Migration("20210622060430_InitialMigration")]
+    [Migration("20210622125126_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,12 +39,12 @@ namespace Exchange.Data.Migrations
                         new
                         {
                             CurrencyTypeId = 1,
-                            Name = ""
+                            Name = "Dollar"
                         },
                         new
                         {
                             CurrencyTypeId = 2,
-                            Name = ""
+                            Name = "Real"
                         });
                 });
 
@@ -63,7 +63,8 @@ namespace Exchange.Data.Migrations
 
                     b.HasKey("LimitId");
 
-                    b.HasIndex("CurrencyTypeId");
+                    b.HasIndex("CurrencyTypeId")
+                        .IsUnique();
 
                     b.ToTable("Limits");
 
@@ -71,25 +72,13 @@ namespace Exchange.Data.Migrations
                         new
                         {
                             LimitId = 1,
-                            Amount = 1000m,
+                            Amount = 200m,
                             CurrencyTypeId = 1
                         },
                         new
                         {
                             LimitId = 2,
-                            Amount = 250m,
-                            CurrencyTypeId = 2
-                        },
-                        new
-                        {
-                            LimitId = 3,
-                            Amount = 1000m,
-                            CurrencyTypeId = 1
-                        },
-                        new
-                        {
-                            LimitId = 4,
-                            Amount = 250m,
+                            Amount = 300m,
                             CurrencyTypeId = 2
                         });
                 });
@@ -144,44 +133,6 @@ namespace Exchange.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Exchange.Data.Models.UserLimit", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LimitId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "LimitId");
-
-                    b.HasIndex("LimitId")
-                        .IsUnique();
-
-                    b.ToTable("UserLimits");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            LimitId = 1
-                        },
-                        new
-                        {
-                            UserId = 1,
-                            LimitId = 2
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            LimitId = 3
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            LimitId = 4
-                        });
-                });
-
             modelBuilder.Entity("Exchange.Data.Models.UserTransaction", b =>
                 {
                     b.Property<int>("UserId")
@@ -220,25 +171,6 @@ namespace Exchange.Data.Migrations
                     b.Navigation("CurrencyType");
                 });
 
-            modelBuilder.Entity("Exchange.Data.Models.UserLimit", b =>
-                {
-                    b.HasOne("Exchange.Data.Models.Limit", "Limit")
-                        .WithOne("UserLimit")
-                        .HasForeignKey("Exchange.Data.Models.UserLimit", "LimitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Exchange.Data.Models.User", "User")
-                        .WithMany("UserLimits")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Limit");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Exchange.Data.Models.UserTransaction", b =>
                 {
                     b.HasOne("Exchange.Data.Models.Transaction", "Transaction")
@@ -258,11 +190,6 @@ namespace Exchange.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Exchange.Data.Models.Limit", b =>
-                {
-                    b.Navigation("UserLimit");
-                });
-
             modelBuilder.Entity("Exchange.Data.Models.Transaction", b =>
                 {
                     b.Navigation("UserTransaction");
@@ -270,8 +197,6 @@ namespace Exchange.Data.Migrations
 
             modelBuilder.Entity("Exchange.Data.Models.User", b =>
                 {
-                    b.Navigation("UserLimits");
-
                     b.Navigation("UserTransactions");
                 });
 #pragma warning restore 612, 618
